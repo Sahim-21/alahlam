@@ -192,22 +192,17 @@ export function Hero() {
         style={{ y: bgY }}
         aria-hidden="true"
       >
-        {/* Base: Background Video (Desktop) & Fallbacks */}
+        {/* Base: Background Video & Fallbacks */}
         <video 
           autoPlay
           loop
           muted
           playsInline
           poster="/hero-bg.png"
-          className="absolute inset-0 hidden md:block h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
         >
           <source src="/images/hero.mp4" type="video/mp4" />
         </video>
-        {/* Static Image Fallback for Mobile (Autoplay often blocked) */}
-        <div 
-          className="absolute inset-0 md:hidden bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/hero-bg.png')" }}
-        />
         {/* Gradient Overlay to ensure text readability on the left and match theme */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F2044]/95 via-[#0D1A38]/75 to-transparent" />
 
