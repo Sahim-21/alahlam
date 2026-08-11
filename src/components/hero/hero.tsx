@@ -131,7 +131,7 @@ function StatItem({
         duration={1800}
         className="font-heading text-3xl font-extrabold text-accent tabular-nums sm:text-4xl"
       />
-      <span className="mt-0.5 text-sm font-medium text-foreground/60">{label}</span>
+      <span className="mt-0.5 text-sm font-medium text-white/70">{label}</span>
     </div>
   );
 }

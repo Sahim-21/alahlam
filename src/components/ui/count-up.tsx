@@ -21,7 +21,7 @@ interface CountUpProps {
 
 export function CountUp({ to, duration = 1800, suffix = '', prefix = '', className }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const inView = useInView(ref, { once: true });
   const [display, setDisplay] = useState(0);
   const hasAnimated = useRef(false);
 
