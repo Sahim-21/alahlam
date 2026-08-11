@@ -1,0 +1,27 @@
+'use client';
+
+import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+
+export function PageTransition({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  
+  return (
+    // MotionConfig automatically forces all animations to instantly complete 
+    // if the user has prefers-reduced-motion enabled at the OS level.
+    <MotionConfig reducedMotion="user">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={pathname}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          className="flex flex-1 flex-col"
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
+    </MotionConfig>
+  );
+}

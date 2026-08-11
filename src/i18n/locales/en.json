@@ -1,0 +1,164 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "whyUs": "Why Us",
+    "enquiry": "Enquiry",
+    "location": "Location",
+    "contact": "Contact",
+    "getQuote": "Get a Quote"
+  },
+  "hero": {
+    "badge": "Ras Al Khaimah, UAE",
+    "heading": "Your Trusted Trading Partner Across the UAE & Beyond",
+    "subheading": "From auto spare parts and energy drinks to foodstuffs, beverages, and general merchandise — Khail Alahlam Trading supplies wholesale and retail buyers locally and internationally with reliability at every step.",
+    "cta": {
+      "primary": "Enquire Now",
+      "secondary": "Our Products"
+    },
+    "stats": {
+      "yearsLabel": "Years in Business",
+      "yearsValue": "10+",
+      "countriesLabel": "Markets Served",
+      "countriesValue": "15+",
+      "productsLabel": "Trade Verticals",
+      "productsValue": "4"
+    }
+  },
+  "whyUs": {
+    "sectionTitle": "Why Trade with Khail Alahlam?",
+    "sectionSubtitle": "Five reasons UAE and international buyers trust us to deliver.",
+    "items": {
+      "logistics": {
+        "title": "RAK Free Zone — UAE, GCC & Global Reach",
+        "description": "Operating from Ras Al Khaimah's free zone gives us streamlined customs clearance, zero import duty on re-exports, and direct freight corridors into Dubai, Sharjah, and major GCC ports — making cross-border trade fast and cost-efficient."
+      },
+      "orders": {
+        "title": "Wholesale & Retail — Any Order Size",
+        "description": "Whether you need a full container load or a smaller trial shipment, we accommodate both. Flexible MOQs mean local retailers and large importers alike can source from a single, reliable partner."
+      },
+      "verticals": {
+        "title": "4 Diversified Trade Verticals",
+        "description": "Auto spare parts, energy drinks, foodstuffs & beverages, and general merchandise — our multi-category portfolio means you can consolidate orders across verticals and reduce your supplier count."
+      },
+      "pricing": {
+        "title": "Competitive Pricing via Direct Sourcing",
+        "description": "We source directly from manufacturers and authorised distributors, cutting out intermediary margins. That saving is passed on to you — predictable pricing on every order, every time."
+      },
+      "fulfillment": {
+        "title": "Fast, Reliable Fulfillment",
+        "description": "Efficient logistics coordination and established carrier relationships mean your orders ship on schedule. Real-time communication at every stage — from proforma invoice to delivery confirmation."
+      }
+    }
+  },
+  "products": {
+    "sectionTitle": "Our Trading Divisions",
+    "sectionSubtitle": "Four verticals. One reliable partner. Wholesale and retail supply across the UAE and beyond.",
+    "enquireCta": "Enquire about this",
+    "divisions": {
+      "autoSpare": {
+        "title": "Auto Spare Parts",
+        "description": "OEM and quality aftermarket spare parts for a wide range of vehicle makes and models. We supply garages, workshops, and parts retailers across the UAE and GCC with consistent stock and competitive pricing."
+      },
+      "general": {
+        "title": "General Trading",
+        "description": "Clothing, textiles, and general merchandise sourced and distributed through our partner Tara General Trading. Reliable supply for retail stockists, wholesalers, and bulk buyers seeking diverse general goods."
+      },
+      "energy": {
+        "title": "Energy Drinks — Wholesale",
+        "description": "Wholesale supply of leading energy drink brands and emerging labels. Competitive per-unit pricing for supermarkets, convenience stores, gyms, and distributors requiring regular, high-volume supply."
+      },
+      "foodstuffs": {
+        "title": "Foodstuffs & Beverages",
+        "description": "A curated range of food products and beverages sourced from trusted suppliers. Serving supermarkets, hospitality operators, institutional buyers, and retail distributors across the region."
+      }
+    }
+  },
+  "about": {
+    "sectionTitle": "About Khail Alahlam Trading",
+    "sectionSubtitle": "A trusted UAE trading company built on reliability, range, and relationships.",
+    "body": "Khail Alahlam Trading is a Ras Al Khaimah-based trading company serving wholesale and retail buyers across the UAE, GCC, and international markets. Operating from the RAK Free Zone, we combine the strategic advantages of one of the UAE\u2019s most business-friendly free zones with deep commercial networks built over years of active trade across four distinct verticals.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To be the most dependable B2B trading partner for buyers in the UAE and beyond \u2014 delivering quality products, transparent pricing, and consistent fulfilment across every order, every time."
+    },
+    "divisionsHeading": "What We Trade",
+    "divisionsIntro": "Our four trading verticals give partners a consolidated sourcing channel \u2014 reducing supplier complexity without sacrificing product range.",
+    "autoSpare": "OEM and aftermarket parts for a wide range of vehicles, supplying garages, workshops, and distributors across the UAE and GCC.",
+    "generalTrading": "Clothing, textiles, and general merchandise sourced and distributed through our partner Tara General Trading \u2014 for retailers and bulk buyers.",
+    "energyDrinks": "Wholesale supply of leading and emerging energy drink brands for retailers, distributors, and institutional buyers seeking reliable volume.",
+    "foodstuffs": "A curated range of food products and beverages for supermarkets, hospitality operators, and institutional purchasers.",
+    "rakHeading": "Why Ras Al Khaimah Free Zone?",
+    "rakBody": "Ras Al Khaimah\u2019s free zone is one of the UAE\u2019s most strategically positioned business hubs. Operating from here gives Khail Alahlam Trading a set of structural advantages that translate directly into faster, cheaper, and simpler trade for our partners.",
+    "rakPoint1": "Zero customs duty on re-exported goods",
+    "rakPoint2": "100% foreign ownership and full profit repatriation",
+    "rakPoint3": "Streamlined import and export procedures",
+    "rakPoint4": "Direct freight access to Dubai, Sharjah, and major GCC seaports and airports",
+    "rakPoint5": "Proximity to trade routes connecting the Middle East, South Asia, and East Africa",
+    "trustHeading": "Ready to Trade with Us?",
+    "trustBody": "Whether you are sourcing for the first time or looking for a long-term supply partner, Khail Alahlam Trading brings the reliability, flexibility, and commercial depth to meet your needs. We welcome enquiries from buyers of all sizes \u2014 from single retail orders to full-container wholesale shipments.",
+    "enquireCta": "Send an Enquiry",
+    "learnMore": "Learn More"
+  },
+  "enquiry": {
+    "sectionTitle": "Submit an Enquiry",
+    "sectionSubtitle": "Let us know what you need, and our team will get back to you with pricing and availability.",
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "John Doe",
+      "company": "Company Name (Optional)",
+      "companyPlaceholder": "Your Company L.L.C",
+      "email": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "phone": "Phone Number (Optional)",
+      "phonePlaceholder": "+971 50 000 0000",
+      "divisions": "Interested Divisions (Select at least one)",
+      "divisionsOptions": {
+        "autoSpare": "Auto Spare Parts",
+        "general": "General Trading",
+        "energy": "Energy Drinks",
+        "foodstuffs": "Foodstuffs & Beverages"
+      },
+      "orderType": "Order Type",
+      "orderTypeOptions": {
+        "wholesale": "Wholesale / Bulk",
+        "retail": "Retail / Small order",
+        "unsure": "Not Sure Yet"
+      },
+      "message": "Items / Quantities Needed",
+      "messagePlaceholder": "Please provide details about the specific products, quantities, and destination...",
+      "submit": "Send Enquiry via Email",
+      "errorRequired": "This field is required.",
+      "errorSelectOne": "Please select at least one division."
+    }
+  },
+  "location": {
+    "sectionTitle": "Our Office Location",
+    "sectionSubtitle": "Operating from the heart of Ras Al Khaimah's commercial free zone.",
+    "address": {
+      "label": "Address",
+      "line1": "Office VUNE0213, Compass Building",
+      "line2": "Al Hulaila Industrial Zone-FZ",
+      "city": "Ras Al Khaimah",
+      "country": "United Arab Emirates"
+    },
+    "getDirections": "Get Directions"
+  },
+  "contact": {
+    "sectionTitle": "Get in Touch",
+    "sectionSubtitle": "Reach out directly via email, or use our dedicated enquiry form for trade requests.",
+    "emailLabel": "Email Us",
+    "emailValue": "khailalahlamtradingzllc@gmail.com",
+    "phoneLabel": "Call or WhatsApp (Coming Soon)",
+    "phoneValue": "+971 XX XXX XXXX"
+  },
+  "footer": {
+    "tagline": "Your reliable B2B trading partner in the UAE and beyond.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact Info",
+    "legal": {
+      "copyright": "© {year} Khail Alahlam Trading. All rights reserved."
+    }
+  }
+}

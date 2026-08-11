@@ -1,0 +1,305 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* ─── Dark mode via class (next-themes + Tailwind v4) ─────────────────────── */
+@custom-variant dark (&:is(.dark *));
+
+/* ─── @theme inline: bridges CSS custom properties → Tailwind utilities ────── */
+@theme inline {
+  /* ── shadcn/ui required tokens ── */
+  --color-background:           var(--background);
+  --color-foreground:           var(--foreground);
+  --color-card:                 var(--card);
+  --color-card-foreground:      var(--card-foreground);
+  --color-popover:              var(--popover);
+  --color-popover-foreground:   var(--popover-foreground);
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-accent:               var(--accent);
+  --color-accent-foreground:    var(--accent-foreground);
+  --color-destructive:          var(--destructive);
+  --color-border:               var(--border);
+  --color-input:                var(--input);
+  --color-ring:                 var(--ring);
+
+  /* ── Brand extension tokens ── */
+  --color-success:              var(--success);
+  --color-success-foreground:   var(--success-foreground);
+  --color-gold:                 var(--gold);
+  --color-gold-foreground:      var(--gold-foreground);
+  --color-navy:                 var(--navy);
+  --color-navy-foreground:      var(--navy-foreground);
+
+  /* ── Radius scale ── */
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+
+  /* ── Chart tokens (shadcn charts) ── */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* ── Sidebar tokens ── */
+  --color-sidebar:                    var(--sidebar);
+  --color-sidebar-foreground:         var(--sidebar-foreground);
+  --color-sidebar-primary:            var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:             var(--sidebar-accent);
+  --color-sidebar-accent-foreground:  var(--sidebar-accent-foreground);
+  --color-sidebar-border:             var(--sidebar-border);
+  --color-sidebar-ring:               var(--sidebar-ring);
+
+  /* ── Typography CSS-variable bindings ── */
+  --font-heading:        var(--font-heading);
+  --font-body:           var(--font-body);
+  --font-arabic-heading: var(--font-arabic-heading);
+  --font-arabic-body:    var(--font-arabic-body);
+
+  /* ── Alias: font-sans → body font (for shadcn component defaults) ── */
+  --font-sans: var(--font-body);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   LIGHT MODE — :root
+   Khail Alahlam Trading: Deep Navy primary, Warm Gold accent, Neutral Grays
+───────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* ── Core surfaces ── */
+  --background:         #F7F8FA;      /* Barely warm white */
+  --foreground:         #111827;      /* Near-black */
+  --card:               #FFFFFF;
+  --card-foreground:    #111827;
+  --popover:            #FFFFFF;
+  --popover-foreground: #111827;
+
+  /* ── Primary: Deep Navy ── */
+  --primary:            #0F2044;
+  --primary-foreground: #F8FAFC;
+
+  /* ── Secondary: Charcoal ── */
+  --secondary:          #EEF0F4;
+  --secondary-foreground: #1C2B3A;
+
+  /* ── Muted ── */
+  --muted:              #EEF0F4;
+  --muted-foreground:   #6B7A99;
+
+  /* ── Accent: Warm Gold ── */
+  --accent:             #C9952A;
+  --accent-foreground:  #0F2044;
+
+  /* ── Destructive ── */
+  --destructive:        #C0392B;
+
+  /* ── Borders & inputs ── */
+  --border:             #DDE2EE;
+  --input:              #DDE2EE;
+  --ring:               #0F2044;
+
+  /* ── Radius base ── */
+  --radius:             0.625rem;
+
+  /* ── Brand extensions ── */
+  --success:            #1A7A4A;
+  --success-foreground: #FFFFFF;
+  --gold:               #C9952A;
+  --gold-foreground:    #0F2044;
+  --navy:               #0F2044;
+  --navy-foreground:    #F8FAFC;
+
+  /* ── Charts ── */
+  --chart-1: #0F2044;
+  --chart-2: #C9952A;
+  --chart-3: #1A7A4A;
+  --chart-4: #6B7A99;
+  --chart-5: #1C2B3A;
+
+  /* ── Sidebar ── */
+  --sidebar:                    #FFFFFF;
+  --sidebar-foreground:         #111827;
+  --sidebar-primary:            #0F2044;
+  --sidebar-primary-foreground: #F8FAFC;
+  --sidebar-accent:             #EEF0F4;
+  --sidebar-accent-foreground:  #111827;
+  --sidebar-border:             #DDE2EE;
+  --sidebar-ring:               #0F2044;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   DARK MODE — .dark
+   Deep space navy backgrounds, lifted gold for warmth
+───────────────────────────────────────────────────────────────────────────── */
+.dark {
+  /* ── Core surfaces ── */
+  --background:         #0A0F1C;      /* Deep space navy */
+  --foreground:         #E8EDF5;
+  /* Navbar backdrop tinted for dark mode */
+  --navbar-bg:          rgba(10, 15, 28, 0.88);
+  --card:               #0D1526;
+  --card-foreground:    #E8EDF5;
+  --popover:            #0D1526;
+  --popover-foreground: #E8EDF5;
+
+  /* ── Primary: Lifted Navy ── */
+  --primary:            #4A7CC4;      /* Lighter for dark bg readability */
+  --primary-foreground: #F8FAFC;
+
+  /* ── Secondary ── */
+  --secondary:          #141D2E;
+  --secondary-foreground: #E8EDF5;
+
+  /* ── Muted ── */
+  --muted:              #141D2E;
+  --muted-foreground:   #7A8CAD;
+
+  /* ── Accent: Warm Amber-Gold (lifted for dark) ── */
+  --accent:             #E8B04B;
+  --accent-foreground:  #0A0F1C;
+
+  /* ── Destructive ── */
+  --destructive:        #E74C3C;
+
+  /* ── Borders & inputs ── */
+  --border:             #1F2D45;
+  --input:              #1F2D45;
+  --ring:               #4A7CC4;
+
+  /* ── Brand extensions ── */
+  --success:            #22A05B;
+  --success-foreground: #FFFFFF;
+  --gold:               #E8B04B;
+  --gold-foreground:    #0A0F1C;
+  --navy:               #1A3A6B;
+  --navy-foreground:    #F8FAFC;
+
+  /* ── Charts ── */
+  --chart-1: #4A7CC4;
+  --chart-2: #E8B04B;
+  --chart-3: #22A05B;
+  --chart-4: #7A8CAD;
+  --chart-5: #243447;
+
+  /* ── Sidebar ── */
+  --sidebar:                    #0D1526;
+  --sidebar-foreground:         #E8EDF5;
+  --sidebar-primary:            #4A7CC4;
+  --sidebar-primary-foreground: #F8FAFC;
+  --sidebar-accent:             #141D2E;
+  --sidebar-accent-foreground:  #E8EDF5;
+  --sidebar-border:             #1F2D45;
+  --sidebar-ring:               #4A7CC4;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BASE LAYER — Typography, RTL, Scrollbar
+───────────────────────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+
+  html {
+    @apply antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    /* Default to Latin body font */
+    font-family: var(--font-body), system-ui, sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    /* Default to Latin heading font */
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  /* ── RTL: Switch to Arabic fonts when dir="rtl" is on <html> ── */
+  [dir="rtl"] body {
+    font-family: var(--font-arabic-body), var(--font-body), system-ui, sans-serif;
+  }
+
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6 {
+    font-family: var(--font-arabic-heading), var(--font-heading), system-ui, sans-serif;
+  }
+
+  /* ── Focus styles ── */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+
+  /* ── Smooth scrollbar ── */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--muted);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--muted-foreground);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--foreground);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Gradient text helper */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C9952A 0%, #E8B04B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-navy {
+    background: linear-gradient(135deg, #0F2044 0%, #1A3A6B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass card surface */
+  .glass {
+    background: oklch(from var(--card) l c h / 0.7);
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    border: 1px solid var(--border);
+  }
+
+  /* Font shortcuts */
+  .font-heading        { font-family: var(--font-heading), system-ui, sans-serif; }
+  .font-body           { font-family: var(--font-body), system-ui, sans-serif; }
+  .font-arabic-heading { font-family: var(--font-arabic-heading), system-ui, sans-serif; }
+  .font-arabic-body    { font-family: var(--font-arabic-body), system-ui, sans-serif; }
+}
