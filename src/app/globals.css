@@ -302,4 +302,93 @@
   .font-body           { font-family: var(--font-body), system-ui, sans-serif; }
   .font-arabic-heading { font-family: var(--font-arabic-heading), system-ui, sans-serif; }
   .font-arabic-body    { font-family: var(--font-arabic-body), system-ui, sans-serif; }
+
+  /* ── Global Image Cohesion Safety Net ── */
+  .image-duotone {
+    position: relative;
+  }
+  .image-duotone::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--navy);
+    mix-blend-mode: multiply;
+    opacity: 0.15;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  .image-duotone::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--gold);
+    mix-blend-mode: screen;
+    opacity: 0.05;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MOTION UTILITIES — Animated divider, spotlight, reduced-motion
+───────────────────────────────────────────────────────────────────────────── */
+
+/* Animated gradient divider between sections */
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-divider {
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(270deg, #0F2044, #C9952A, #1A3A6B, #E8B04B, #0F2044);
+  background-size: 300% 300%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Cursor spotlight overlay used in Hero & Story */
+.spotlight-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+/* Blur-to-focus reveal utility */
+.reveal-blur-start {
+  filter: blur(8px);
+  opacity: 0;
+  transform: scale(0.97);
+}
+.reveal-blur-end {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
+  transition: filter 0.7s ease, opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* ── Prefers-Reduced-Motion overrides ── */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable marquee */
+  .animate-marquee-ltr,
+  .animate-marquee-rtl {
+    animation: none !important;
+  }
+
+  /* Disable animated divider shift */
+  .animated-divider {
+    animation: none !important;
+    background: linear-gradient(270deg, #0F2044, #C9952A, #1A3A6B);
+    background-size: 100% 100%;
+  }
+
+  /* Instant reveals — no blur, no scale */
+  .reveal-blur-start {
+    filter: none;
+    opacity: 1;
+    transform: none;
+  }
 }

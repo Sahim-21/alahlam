@@ -11,9 +11,10 @@
 //   • Verticals strip: four icon+label chips for the four trade categories
 //   • Parallax scroll overlay using useScroll + useTransform
 
-import Link from 'next/link';
 import {
   motion,
+  useMotionValue,
+  useMotionTemplate,
   useScroll,
   useTransform,
   type Variants,
@@ -22,6 +23,8 @@ import { useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from '@/components/locale-provider';
 import { cn } from '@/lib/utils';
+import { CountUp } from '@/components/ui/count-up';
+import { MagneticButton } from '@/components/ui/magnetic-button';
 
 // ─── Animation variants ───────────────────────────────────────────────────────
 
@@ -41,6 +44,15 @@ const ITEM: Variants = {
     opacity: 1,
     y: 0,
     transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const CHIP_ITEM: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.8, duration: 0.65, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -98,22 +110,27 @@ const VERTICALS = [
   },
 ];
 
-// ─── Stat item ─────────────────────────────────────────────────────────────────
+// ─── Stat item (now uses CountUp for number animation) ───────────────────────
 
 function StatItem({
-  value,
+  numericValue,
+  suffix,
   label,
   isRtl,
 }: {
-  value: string;
+  numericValue: number;
+  suffix: string;
   label: string;
   isRtl: boolean;
 }) {
   return (
     <div className={cn('flex flex-col', isRtl ? 'items-end' : 'items-start')}>
-      <span className="font-heading text-3xl font-extrabold text-accent tabular-nums sm:text-4xl">
-        {value}
-      </span>
+      <CountUp
+        to={numericValue}
+        suffix={suffix}
+        duration={1800}
+        className="font-heading text-3xl font-extrabold text-accent tabular-nums sm:text-4xl"
+      />
       <span className="mt-0.5 text-sm font-medium text-foreground/60">{label}</span>
     </div>
   );
@@ -135,6 +152,19 @@ export function Hero() {
   const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
+  // Cursor spotlight — tracks pointer position within the hero only
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const spotlight = useMotionTemplate`radial-gradient(400px circle at ${mouseX}px ${mouseY}px, rgba(201,149,42,0.12) 0%, transparent 70%)`;
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = sectionRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
+
   const handleScroll = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -143,28 +173,41 @@ export function Hero() {
     <section
       id="home"
       ref={sectionRef}
+      onMouseMove={handleMouseMove}
       className={cn(
         'relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden',
         isRtl && 'rtl'
       )}
       aria-label="Hero"
     >
+      {/* Cursor spotlight layer */}
+      <motion.div
+        className="spotlight-overlay"
+        style={{ background: spotlight }}
+        aria-hidden="true"
+      />
       {/* ── Layered gradient background ─────────────────────────────────────── */}
       <motion.div
         className="absolute inset-0 -z-10"
         style={{ y: bgY }}
         aria-hidden="true"
       >
-        {/* Base: Background Video */}
+        {/* Base: Background Video (Desktop) & Fallbacks */}
         <video 
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 h-full w-full object-cover"
+          poster="/hero-bg.png"
+          className="absolute inset-0 hidden md:block h-full w-full object-cover"
         >
-          <source src="/hero_video.mp4" type="video/mp4" />
+          <source src="/images/hero.mp4" type="video/mp4" />
         </video>
+        {/* Static Image Fallback for Mobile (Autoplay often blocked) */}
+        <div 
+          className="absolute inset-0 md:hidden bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/hero-bg.png')" }}
+        />
         {/* Gradient Overlay to ensure text readability on the left and match theme */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F2044]/95 via-[#0D1A38]/75 to-transparent" />
 
@@ -216,17 +259,17 @@ export function Hero() {
             isRtl ? 'items-end text-right' : 'items-start text-left'
           )}
         >
-          {/* ── Location badge ── */}
-          <motion.div variants={ITEM}>
+          {/* ── Credibility Chip (Trails the main stagger) ── */}
+          <motion.div variants={CHIP_ITEM}>
             <span
               className={cn(
                 'inline-flex items-center gap-2 rounded-full border border-white/20',
-                'bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest',
+                'bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-widest',
                 'text-white/80 backdrop-blur-sm',
-                isRtl && 'font-arabic-body flex-row-reverse'
+                isRtl ? 'font-arabic-body flex-row-reverse' : 'uppercase'
               )}
             >
-              {/* Pin icon */}
+              {/* Star/Credibility icon */}
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -234,12 +277,11 @@ export function Hero() {
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-3 w-3 shrink-0 text-accent"
+                className="h-3.5 w-3.5 shrink-0 text-accent"
               >
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z" />
-                <circle cx="12" cy="10" r="3" />
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
               </svg>
-              {t('badge')}
+              {locale === 'en' ? '4 Trading Divisions · RAK Free Zone' : '٤ أقسام تجارية · منطقة رأس الخيمة الحرة'}
             </span>
           </motion.div>
 
@@ -257,7 +299,7 @@ export function Hero() {
               <>
                 Your Trusted{' '}
                 <span className="text-gradient-gold">Trading Partner</span>
-                {' '}Across the UAE & Beyond
+                {' '}Across the UAE {'&'} Beyond
               </>
             ) : (
               <>
@@ -286,37 +328,39 @@ export function Hero() {
               isRtl ? 'flex-row-reverse' : 'flex-row'
             )}
           >
-            {/* Primary CTA — gold */}
-            <button
-              onClick={() => handleScroll('enquiry')}
-              className={cn(
-                'group relative inline-flex items-center gap-2 overflow-hidden rounded-full',
-                'bg-accent px-8 py-3.5 text-sm font-bold text-accent-foreground',
-                'shadow-lg shadow-accent/30 transition-all duration-300',
-                'hover:shadow-xl hover:shadow-accent/40 hover:scale-[1.03]',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-transparent',
-                isRtl && 'font-arabic-heading flex-row-reverse'
-              )}
-            >
-              {/* Shine sweep */}
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
-              <span className="relative">{t('cta.primary')}</span>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2.5}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className={cn('relative h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5', isRtl && 'rotate-180 group-hover:-translate-x-0.5 group-hover:translate-x-0')}
+            {/* Primary CTA — gold, wrapped in MagneticButton */}
+            <MagneticButton strength={12}>
+              <button
+                onClick={() => handleScroll('enquiry')}
+                className={cn(
+                  'group relative inline-flex items-center gap-2 overflow-hidden rounded-full',
+                  'bg-accent px-8 py-3.5 text-sm font-bold text-accent-foreground',
+                  'shadow-lg shadow-accent/30 transition-all duration-300',
+                  'hover:shadow-xl hover:shadow-accent/40 hover:scale-[1.03]',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-transparent',
+                  isRtl && 'font-arabic-heading flex-row-reverse'
+                )}
               >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
+                {/* Shine sweep */}
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
+                <span className="relative">{t('cta.primary')}</span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className={cn('relative h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5', isRtl && 'rotate-180 group-hover:-translate-x-0.5 group-hover:translate-x-0')}
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </MagneticButton>
 
             {/* Secondary CTA — ghost */}
             <button
-              onClick={() => handleScroll('products')}
+              onClick={() => handleScroll('capabilities')}
               className={cn(
                 'inline-flex items-center gap-2 rounded-full border border-white/30',
                 'px-8 py-3.5 text-sm font-semibold text-white/90',
@@ -384,7 +428,8 @@ export function Hero() {
 
           <motion.div variants={ITEM}>
             <StatItem
-              value={t('stats.yearsValue')}
+              numericValue={20}
+              suffix="+"
               label={t('stats.yearsLabel')}
               isRtl={isRtl}
             />
@@ -395,7 +440,8 @@ export function Hero() {
 
           <motion.div variants={ITEM}>
             <StatItem
-              value={t('stats.countriesValue')}
+              numericValue={40}
+              suffix="+"
               label={t('stats.countriesLabel')}
               isRtl={isRtl}
             />
@@ -405,7 +451,8 @@ export function Hero() {
 
           <motion.div variants={ITEM}>
             <StatItem
-              value={t('stats.productsValue')}
+              numericValue={10000}
+              suffix="+"
               label={t('stats.productsLabel')}
               isRtl={isRtl}
             />

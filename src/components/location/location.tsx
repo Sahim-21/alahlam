@@ -8,6 +8,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useLocale } from '@/components/locale-provider';
+import { SiteImages } from '@/lib/images';
 import { cn } from '@/lib/utils';
 
 export function Location() {
@@ -21,14 +22,23 @@ export function Location() {
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(mapQuery)}`;
 
   return (
-    <section id="location" ref={sectionRef} className={cn("w-full bg-background py-24 sm:py-32", isRtl && 'rtl')}>
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+    <section id="location" ref={sectionRef} className={cn("relative w-full bg-background py-24 sm:py-32", isRtl && 'rtl')}>
+      {/* ── Background Imagery ── */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.23] md:opacity-[0.25]"
+          style={{ backgroundImage: `url(${SiteImages.collage[1]})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         
-        {/* Header */}
+        {/* Header — blur-to-focus reveal */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.97 }}
+          animate={inView ? { opacity: 1, filter: 'blur(0px)', scale: 1 } : { opacity: 0, filter: 'blur(8px)', scale: 0.97 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className={cn("mb-12 flex flex-col gap-4 text-center", isRtl && "items-end text-right")}
         >
           <h2 className={cn("text-3xl font-extrabold tracking-tight sm:text-4xl", isRtl ? "font-arabic-heading" : "font-heading")}>
@@ -39,11 +49,11 @@ export function Location() {
           </p>
         </motion.div>
 
-        {/* Content */}
+        {/* Content — scale+fade reveal */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={{ opacity: 0, scale: 0.96, y: 16 }}
+          animate={inView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.96, y: 16 }}
+          transition={{ duration: 0.65, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
           className={cn("grid gap-8 lg:grid-cols-3 lg:gap-12", isRtl && "direction-rtl lg:grid-cols-3")}
         >
           {/* Info Card */}
