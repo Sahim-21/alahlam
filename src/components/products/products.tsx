@@ -95,7 +95,7 @@ export function Products() {
       <div className="absolute inset-0 pointer-events-none z-0">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.23] md:opacity-[0.25]"
-          style={{ backgroundImage: `url(${SiteImages.collage[2]})` }}
+          style={{ backgroundImage: `url(${SiteImages.productsBg})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
       </div>

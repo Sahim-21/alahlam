@@ -2,6 +2,7 @@ export const SiteImages = {
   reference: '/reference-image.png',
   hero: '/images/hero.png',
   whyUsBg: '/images/why-us-bg.png',
+  productsBg: '/images/products-bg.png',
   products: {
     autoSpare: '/images/product-auto.png',
     general: '/images/product-general.png',
