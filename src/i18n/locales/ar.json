@@ -63,7 +63,6 @@
       "email": "البريد الإلكتروني",
       "emailPlaceholder": "ahmed@example.com",
       "phone": "رقم الهاتف (اختياري)",
-      "phonePlaceholder": "+971 50 000 0000",
       "divisions": "القطاعات المهتم بها (اختر واحداً على الأقل)",
       "divisionsOptions": {
         "autoSpare": "قطع غيار السيارات",
@@ -100,16 +99,14 @@
     "sectionTitle": "تواصل معنا",
     "sectionSubtitle": "تواصل معنا مباشرة عبر البريد الإلكتروني، أو استخدم نموذج الاستفسار المخصص لطلبات التجارة.",
     "emailLabel": "راسلنا عبر البريد",
-    "emailValue": "khailalahlamtradingzllc@gmail.com",
-    "phoneLabel": "اتصال أو واتساب (قريباً)",
-    "phoneValue": "+971 XX XXX XXXX"
+    "emailValue": "info@khailalahlamtradingfzllc.com"
   },
   "footer": {
     "tagline": "شريكك التجاري الموثوق في الإمارات وما وراءها.",
     "quickLinks": "روابط سريعة",
     "contact": "معلومات الاتصال",
     "legal": {
-      "copyright": "© {year} خيل الأحلام للتجارة. جميع الحقوق محفوظة."
+      "copyright": "© {year} خيل الأحلام للتجارة — شركة المنطقة الحرة ذات المسؤولية المحدودة FZ-LLC. جميع الحقوق محفوظة."
     }
   },
   "capabilities": {

@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import { useLocale } from '@/components/locale-provider';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { COMPANY_LEGAL_FORM_AR, COMPANY_LEGAL_FORM_EN, COMPANY_NAME_AR, COMPANY_NAME_EN } from '@/lib/company';
 
 export function Footer() {
   const tNav = useTranslations('nav');
@@ -26,12 +27,18 @@ export function Footer() {
           
           {/* Brand & Tagline */}
           <div className={cn("flex flex-col gap-6 lg:col-span-2", isRtl && "items-end text-right")}>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-1">
               <span className={cn(
                 "text-2xl font-black uppercase tracking-tighter text-foreground",
                 isRtl ? "font-arabic-heading" : "font-heading"
               )}>
-                {isRtl ? "خيل الأحلام للتجارة" : "Khail Alahlam Trading"}
+                {isRtl ? COMPANY_NAME_AR : COMPANY_NAME_EN}
+              </span>
+              <span className={cn(
+                "text-sm font-semibold text-muted-foreground",
+                isRtl ? "font-arabic-heading" : "font-heading"
+              )}>
+                {isRtl ? COMPANY_LEGAL_FORM_AR : COMPANY_LEGAL_FORM_EN}
               </span>
             </div>
             <p className={cn("max-w-xs text-muted-foreground", isRtl ? "font-arabic-body" : "font-body")}>

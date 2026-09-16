@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from '@/components/locale-provider';
 import { cn } from '@/lib/utils';
+import { COMPANY_EMAIL } from '@/lib/company';
 
 export function Newsletter() {
   const t = useTranslations('newsletter');
@@ -26,7 +27,7 @@ export function Newsletter() {
 
     const subject = `Trade Updates Subscription`;
     const body = `Please subscribe me to trade updates for new stock and bulk pricing.\n\nEmail: ${email}`;
-    const to = 'khailalahlamtradingzllc@gmail.com';
+    const to = COMPANY_EMAIL;
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     window.open(gmailUrl, '_blank');
