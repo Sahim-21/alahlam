@@ -7,8 +7,7 @@ export const SiteImages = {
     autoSpare: '/images/product-auto.png',
     general: '/images/product-general.png',
     energy: '/images/product-energy.png',
-    // Fallback to reference image for food since generation was skipped
-    foodstuffs: '/reference-image.png',
+    foodstuffs: '/images/product-foodstuffs.png',
   },
   // 4 images used for the dimensional transition
   collage: [

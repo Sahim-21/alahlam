@@ -78,6 +78,7 @@ const DIVISION_IMAGES: Partial<Record<(typeof DIVISIONS)[number]['key'], string>
   autoSpare: SiteImages.products.autoSpare,
   general: SiteImages.products.general,
   energy: SiteImages.products.energy,
+  foodstuffs: SiteImages.products.foodstuffs,
 };
 
 export function Products() {
