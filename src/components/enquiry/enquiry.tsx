@@ -11,6 +11,7 @@ import { useTranslations } from 'next-intl';
 import { useLocale } from '@/components/locale-provider';
 import { useEnquiry, type DivisionKey } from '@/contexts/enquiry-context';
 import { cn } from '@/lib/utils';
+import { COMPANY_EMAIL } from '@/lib/company';
 
 export function Enquiry() {
   const t = useTranslations('enquiry');
@@ -90,7 +91,7 @@ ${message || 'No additional details provided.'}
     `.trim();
 
     // Construct Gmail Compose URL
-    const to = 'khailalahlamtradingzllc@gmail.com';
+    const to = COMPANY_EMAIL;
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     // Open in new tab
@@ -180,7 +181,6 @@ ${message || 'No additional details provided.'}
                   type="tel"
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
-                  placeholder={t('form.phonePlaceholder')}
                   className={cn(
                     "rounded-xl border border-border bg-background px-4 py-3 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-accent",
                     isRtl && "text-right font-arabic-body"

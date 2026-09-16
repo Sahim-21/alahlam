@@ -14,24 +14,25 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { PageTransition } from "@/components/page-transition";
 import { isRTL, localeLang, type Locale } from "@/i18n/config";
+import { COMPANY_LEGAL_FORM_EN, COMPANY_NAME_EN } from "@/lib/company";
 import "./globals.css";
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
   title: {
-    default: "Khail Alahlam Trading | UAE B2B Trading Company",
-    template: "%s | Khail Alahlam Trading",
+    default: `${COMPANY_NAME_EN} ${COMPANY_LEGAL_FORM_EN} | UAE B2B Trading Company`,
+    template: `%s | ${COMPANY_NAME_EN} FZ-LLC`,
   },
   description:
-    "Khail Alahlam Trading — a trusted UAE-based B2B trading company specialising in commodities, industrial goods, and consumer products across the GCC and beyond.",
+    `${COMPANY_NAME_EN} ${COMPANY_LEGAL_FORM_EN} — a trusted UAE-based B2B trading company specialising in commodities, industrial goods, and consumer products across the GCC and beyond.`,
   keywords: ["UAE trading", "B2B", "commodities", "Dubai", "GCC", "import export"],
-  authors: [{ name: "Khail Alahlam Trading" }],
+  authors: [{ name: `${COMPANY_NAME_EN} ${COMPANY_LEGAL_FORM_EN}` }],
   metadataBase: new URL("https://khailalahlam.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Khail Alahlam Trading",
+    siteName: `${COMPANY_NAME_EN} ${COMPANY_LEGAL_FORM_EN}`,
   },
 };
 

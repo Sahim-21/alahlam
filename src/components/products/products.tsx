@@ -11,6 +11,7 @@ import { useLocale } from '@/components/locale-provider';
 import { useEnquiry } from '@/contexts/enquiry-context';
 import { SiteImages } from '@/lib/images';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 const CONTAINER: Variants = {
   hidden: {},
@@ -73,6 +74,13 @@ const DIVISIONS = [
   },
 ] as const;
 
+const DIVISION_IMAGES: Partial<Record<(typeof DIVISIONS)[number]['key'], string>> = {
+  autoSpare: SiteImages.products.autoSpare,
+  general: SiteImages.products.general,
+  energy: SiteImages.products.energy,
+  foodstuffs: SiteImages.products.foodstuffs,
+};
+
 export function Products() {
   const t = useTranslations('products');
   const { isRtl } = useLocale();
@@ -95,7 +103,7 @@ export function Products() {
       <div className="absolute inset-0 pointer-events-none z-0">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.23] md:opacity-[0.25]"
-          style={{ backgroundImage: `url(${SiteImages.collage[2]})` }}
+          style={{ backgroundImage: `url(${SiteImages.productsBg})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
       </div>
@@ -144,8 +152,19 @@ export function Products() {
                 isRtl ? 'items-end text-right' : 'items-start text-left'
               )}
             >
-              {/* Gradient accent top bar */}
-              <div className={cn('h-1.5 w-full bg-gradient-to-r', div.accentClass.replace('/60', '').replace('/30', ''))} />
+              {DIVISION_IMAGES[div.key] ? (
+                <div className="relative h-40 w-full overflow-hidden">
+                  <Image
+                    src={DIVISION_IMAGES[div.key]!}
+                    alt={t(`divisions.${div.key}.title`)}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              ) : (
+                <div className={cn('h-1.5 w-full bg-gradient-to-r', div.accentClass.replace('/60', '').replace('/30', ''))} />
+              )}
 
               {/* Content */}
               <div className="flex flex-col gap-4 p-6 flex-1">

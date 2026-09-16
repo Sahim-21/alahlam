@@ -27,6 +27,7 @@ import { useLocale } from '@/components/locale-provider';
 import { LanguageToggle } from '@/components/language-toggle';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { cn } from '@/lib/utils';
+import { COMPANY_LEGAL_FORM_AR, COMPANY_LEGAL_FORM_EN, COMPANY_NAME_AR, COMPANY_NAME_EN } from '@/lib/company';
 
 // ─── Nav link data ────────────────────────────────────────────────────────────
 
@@ -48,33 +49,25 @@ const NAV_ITEMS: NavItem[] = [
 // ─── Wordmark ─────────────────────────────────────────────────────────────────
 
 function Wordmark({ isRtl }: { isRtl: boolean }) {
-  const englishLine = (
-    <span className="block font-heading text-base font-800 leading-tight tracking-tight text-foreground">
-      Khail Alahlam Trading
-    </span>
-  );
-  const arabicLine = (
-    <span className="block font-arabic-heading text-[0.7rem] font-600 leading-tight tracking-wide text-muted-foreground">
-      خيل الأحلام للتجارة
-    </span>
-  );
-
   return (
     <div className={cn('flex flex-col', isRtl ? 'items-end text-end' : 'items-start text-start')}>
-      {/* Leading line swaps based on direction */}
       {isRtl ? (
         <>
           <span className="block font-arabic-heading text-base font-800 leading-tight tracking-wide text-foreground">
-            خيل الأحلام للتجارة
+            {COMPANY_NAME_AR}
           </span>
-          <span className="block font-heading text-[0.7rem] font-600 leading-tight tracking-tight text-muted-foreground">
-            Khail Alahlam Trading
+          <span className="block font-arabic-heading text-[0.7rem] font-600 leading-tight tracking-wide text-muted-foreground">
+            {COMPANY_LEGAL_FORM_AR}
           </span>
         </>
       ) : (
         <>
-          {englishLine}
-          {arabicLine}
+          <span className="block font-heading text-base font-800 leading-tight tracking-tight text-foreground">
+            {COMPANY_NAME_EN}
+          </span>
+          <span className="block font-heading text-[0.65rem] font-600 leading-tight tracking-tight text-muted-foreground">
+            {COMPANY_LEGAL_FORM_EN}
+          </span>
         </>
       )}
     </div>

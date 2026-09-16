@@ -63,7 +63,6 @@
       "email": "Email Address",
       "emailPlaceholder": "john@example.com",
       "phone": "Phone Number (Optional)",
-      "phonePlaceholder": "+971 50 000 0000",
       "divisions": "Interested Divisions (Select at least one)",
       "divisionsOptions": {
         "autoSpare": "Auto Spare Parts",
@@ -100,16 +99,14 @@
     "sectionTitle": "Get in Touch",
     "sectionSubtitle": "Reach out directly via email, or use our dedicated enquiry form for trade requests.",
     "emailLabel": "Email Us",
-    "emailValue": "khailalahlamtradingzllc@gmail.com",
-    "phoneLabel": "Call or WhatsApp (Coming Soon)",
-    "phoneValue": "+971 XX XXX XXXX"
+    "emailValue": "info@khailalahlamtradingfzllc.com"
   },
   "footer": {
     "tagline": "Your reliable B2B trading partner in the UAE and beyond.",
     "quickLinks": "Quick Links",
     "contact": "Contact Info",
     "legal": {
-      "copyright": "© {year} Khail Alahlam Trading. All rights reserved."
+      "copyright": "© {year} Khail Alahlam Trading Free Zone Limited Liability Company FZ-LLC. All rights reserved."
     }
   },
   "capabilities": {
