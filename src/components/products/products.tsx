@@ -9,7 +9,6 @@ import { motion, useInView, type Variants } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useLocale } from '@/components/locale-provider';
 import { useEnquiry } from '@/contexts/enquiry-context';
-import { SiteImages } from '@/lib/images';
 import { cn } from '@/lib/utils';
 
 const CONTAINER: Variants = {
@@ -89,18 +88,9 @@ export function Products() {
     <section
       id="products"
       ref={sectionRef}
-      className={cn('relative w-full bg-background py-24 sm:py-32', isRtl && 'rtl')}
+      className={cn('w-full bg-background py-24 sm:py-32', isRtl && 'rtl')}
     >
-      {/* ── Background Imagery ── */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.23] md:opacity-[0.25]"
-          style={{ backgroundImage: `url(${SiteImages.collage[2]})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
         {/* Header */}
         <motion.div
