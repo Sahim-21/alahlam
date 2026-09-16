@@ -25,6 +25,8 @@ import { useLocale } from '@/components/locale-provider';
 import { cn } from '@/lib/utils';
 import { CountUp } from '@/components/ui/count-up';
 import { MagneticButton } from '@/components/ui/magnetic-button';
+import { SiteImages } from '@/lib/images';
+import Image from 'next/image';
 
 // ─── Animation variants ───────────────────────────────────────────────────────
 
@@ -188,21 +190,19 @@ export function Hero() {
       />
       {/* ── Layered gradient background ─────────────────────────────────────── */}
       <motion.div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-10 overflow-hidden"
         style={{ y: bgY }}
         aria-hidden="true"
       >
-        {/* Base: Background Video & Fallbacks */}
-        <video 
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/hero-bg.png"
-          className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src="/images/hero.mp4" type="video/mp4" />
-        </video>
+        {/* Base: Background image */}
+        <Image
+          src={SiteImages.hero}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
         {/* Gradient Overlay to ensure text readability on the left and match theme */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F2044]/95 via-[#0D1A38]/75 to-transparent" />
 

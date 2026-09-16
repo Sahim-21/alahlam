@@ -1,6 +1,6 @@
 export const SiteImages = {
   reference: '/reference-image.png',
-  heroVideo: '/hero_video.mp4',
+  hero: '/images/hero.png',
   whyUsBg: '/images/why-us-bg.png',
   products: {
     autoSpare: '/images/product-auto.png',
